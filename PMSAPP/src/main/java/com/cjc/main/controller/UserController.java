@@ -51,10 +51,5 @@ public class UserController {
         }
     }
     
-    @RequestMapping("/customers")
-    public String customers() {
-    	return "adminView";
-    }
-    
-    
+   
 }

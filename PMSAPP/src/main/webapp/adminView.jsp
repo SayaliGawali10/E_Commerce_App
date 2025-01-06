@@ -106,7 +106,7 @@
             width: 120px;
         }
 
-        /* Adjusting columns for better visibility */
+       
         .col-md-4 {
             margin-bottom: 30px;
             display: flex;
@@ -132,15 +132,14 @@
     </script>
 </head>
 <body>
-    <!-- Navbar -->
+    
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" class="amazon-logo">
             </a>
             <div class="d-flex">
-                <!-- Removed Settings Button -->
-                <!-- Logout Button -->
+                
                 <button class="btn btn-signout" onclick="logoutUser()">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
@@ -148,11 +147,11 @@
         </div>
     </nav>
 
-    <!-- Dashboard -->
+    
     <div class="container dashboard">
         <marquee behavior="scroll" direction="left">Welcome to the Future of Online Shopping!</marquee>
         <div class="row">
-            <!-- My Orders -->
+            
             <div class="col-md-4">
                 <div class="card">
                     <img src="images/orders.jpeg" class="card-img-top" alt="Orders">
@@ -165,20 +164,20 @@
                     </div>
                 </div>
             </div>
-            <!-- Products -->
+            
             <div class="col-md-4">
                 <div class="card">
                     <img src="images/products.jpeg" class="card-img-top" alt="Products">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-cogs"></i> Products</h5>
-                        <p class="card-text">Add, edit, view or remove products.</p>
+                        <p class="card-text">Add, view or remove products.</p>
                         <button class="btn btn-primary" onclick="location.href='/products.jsp'">
                             <i class="fas fa-tools"></i> Manage Products
                         </button>
                     </div>
                 </div>
             </div>
-            <!-- Customer Management -->
+           
             <div class="col-md-4">
                 <div class="card">
                     <img src="images/customers.jpeg" class="card-img-top" alt="Customers">

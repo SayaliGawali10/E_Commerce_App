@@ -1,123 +1,213 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Management</title>
-    <!-- Bootstrap & Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        body {
-            background-image: url('images/customers.jpeg'); /* Replace with your own image */
-            background-size: cover;
-            background-position: center;
-            color: white;
-            font-family: 'Arial', sans-serif;
-        }
-
-        .container {
-            margin-top: 40px;
-        }
-
-        .card {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 12px;
-            color: white;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .form-title {
-            font-size: 2rem;
-            color: #f8a600;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .btn-primary {
-            background-color: #f8a600;
-            border: none;
-            font-weight: bold;
-        }
-
-        .btn-primary:hover {
-            background-color: #d17e00;
-        }
-
-        table {
-            margin-top: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            color: black;
-        }
-
-        th {
-            background-color: #f8a600;
-            color: white;
-        }
-
-        footer {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        footer a {
-            color: #f8a600;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+<meta charset="ISO-8859-1">
+<title>Customer Management</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+    body {
+        background-image: url("images/customers.jpeg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+    }
+    .card-custom {
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin-top: 50px;
+    }
+    .form-label {
+        color: #007bff; 
+        font-weight: bold;
+    }
+    .form-title {
+        color: #ff5733; 
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    .search-box {
+        margin-top: 20px;
+    }
+    .search-label {
+        color: #007bff;
+        font-weight: bold;
+    }
+    .search-input {
+        width: 300px;
+        margin-right: 10px;
+    }
+    .customer-list {
+        margin-top: 30px;
+    }
+    table {
+        width: 100%;
+    }
+    th, td {
+        text-align: center;
+    }
+</style>
 </head>
 <body>
-    <!-- Customer Management -->
-    <div class="container">
-        <!-- Display Logged-in Customer Details -->
-        <div class="card">
-            <h2 class="form-title"><i class="bi bi-person-circle"></i> Customer Details</h2>
-            <c:if test="${not empty loggedInCustomer}">
-                <form action="${pageContext.request.contextPath}/editCustomer" method="post">
-                    <div class="mb-3">
-                        <label for="customerName" class="form-label">Customer Name</label>
-                        <input type="text" class="form-control" id="customerName" name="name" value="${loggedInCustomer.name}" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="customerEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="customerEmail" name="email" value="${loggedInCustomer.email}" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="customerPhone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" id="customerPhone" name="phone" value="${loggedInCustomer.phone}" required>
-                    </div>
-                    <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-primary">Update Details</button>
-                    </div>
-                </form>
-                <!-- Delete Customer -->
-                <form action="${pageContext.request.contextPath}/removeCustomer" method="post" style="text-align: center;">
-                    <input type="hidden" name="id" value="${loggedInCustomer.id}">
-                    <button type="submit" class="btn btn-danger btn-sm">Delete Account</button>
-                </form>
-            </c:if>
-            <c:if test="${empty loggedInCustomer}">
-                <p class="text-center">No customer details found.</p>
+
+<div class="container text-end mt-3">
+    <a href="javascript:void(0);" onclick="logoutUser()">
+        <button class="btn btn-outline-primary">
+            Logout
+        </button>
+    </a>
+</div>
+
+<script>
+    function logoutUser() {
+        sessionStorage.clear();
+        localStorage.clear();
+        window.location.href = 'login.jsp';
+    }
+</script>
+
+<div class="container">
+    
+   
+    <div class="card-custom">
+        <h2 class="text-center form-title">
+            <i class="bi bi-search"></i> Search Customer by ID
+        </h2>
+        <form action="/SearchCustomer" method="get" class="search-box text-center">
+            <label for="searchId" class="search-label">Enter Customer ID to Search:</label>
+            <input type="text" id="searchId" name="id" class="form-control search-input" placeholder="Search by Customer ID" required>
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-search"></i> Search
+            </button>
+        </form>
+
+        <div class="customer-list">
+            <c:if test="${not empty searchedCustomer}">
+                <h3 class="text-center">Search Result</h3>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Customer ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>${searchedCustomer.id}</td>
+                            <td>${searchedCustomer.name}</td>
+                            <td>${searchedCustomer.email}</td>
+                            <td>${searchedCustomer.mobileNo}</td>
+                            <td>${searchedCustomer.address}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </c:if>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Customer Management | <a href="#">Privacy Policy</a></p>
-    </footer>
+  
+<div class="card-custom">
+    <h2 class="text-center form-title">
+        <i class="bi bi-person-plus"></i> Add New Customer
+    </h2>
+    <form action="/AddCustomer" method="post">
+        <div class="mb-3">
+            <label for="id" class="form-label">Customer ID</label>
+            <input type="text" class="form-control" id="id" name="id" placeholder="Enter Customer ID" required>
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Full Name" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Address" required>
+        </div>
+        <div class="mb-3">
+            <label for="mobileNo" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="mobileNo" name="mobileNo" placeholder="Enter Mobile Number" required>
+        </div>
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" name="address" placeholder="Enter Address" required></textarea>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Add Customer
+            </button>
+        </div>
+    </form>
+</div>
+    
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <div class="card-custom">
+        <h2 class="text-center form-title">
+            <i class="bi bi-list"></i> All Customers
+        </h2>
+        <c:if test="${not empty customers}">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Customer ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="customer" items="${customers}">
+                        <tr>
+                            <td>
+                                <input type="radio" name="selectedCustomerId" value="${customer.id}" required>
+                            </td>
+                            <td>${customer.id}</td>
+                            <td>${customer.name}</td>
+                            <td>${customer.email}</td>
+                           <td>${customer.mobileNo}</td> 
+                           <td>${customer.address}</td>
+                            <td>
+                                <form action="/EditCustomer" method="get" class="d-inline">
+                                    <input type="hidden" name="id" value="${customer.id}">
+                                    <button type="submit" class="btn btn-sm btn-primary">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </button>
+                                </form>
+                                <form action="/DeleteCustomer" method="post" class="d-inline">
+                                    <input type="hidden" name="id" value="${customer.id}">
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
+        <c:if test="${empty customers}">
+            <p class="text-center form-label">No customers available</p>
+        </c:if>
+    </div>
+</div>
+
 </body>
 </html>

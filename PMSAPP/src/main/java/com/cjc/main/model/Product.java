@@ -15,10 +15,6 @@ public class Product {
     private String categories;
     private String imageUrl;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id") 
-    private Order order;
-
     public Long getId() {
         return id;
     }
@@ -57,14 +53,6 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
 	public String getCategories() {

@@ -1,5 +1,7 @@
 package com.cjc.main.serviceI;
 
+import java.util.List;
+
 import com.cjc.main.model.User;
 
 public interface UserServiceI {
@@ -10,6 +12,16 @@ public interface UserServiceI {
 
 	public Iterable<User> displayAllData();
 
+	
+
+	
+
+	
+
+	
+
+	
+	
 
 	
 	

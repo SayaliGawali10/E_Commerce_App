@@ -2,6 +2,7 @@ package com.cjc.main.serviceI;
 
 import java.util.List;
 
+import com.cjc.main.model.Order;
 import com.cjc.main.model.Product;
 import com.cjc.main.model.User;
 
@@ -16,6 +17,11 @@ public interface ProductServiceI {
 	public void remove(Long id);
 
 	
+
+
+
+	
+		
 
 	
 	

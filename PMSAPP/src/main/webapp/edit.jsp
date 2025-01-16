@@ -71,6 +71,9 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-save"></i> Save Changes
                 </button>
+                <a href="${pageContext.request.contextPath}/cancel" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Cancel
+                </a>
             </div>
         </form>
     </div>

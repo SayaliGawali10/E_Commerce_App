@@ -13,6 +13,9 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
 	public List<Product> findByCategories(String categories);
 
+	
+	
+
 
 	
 }

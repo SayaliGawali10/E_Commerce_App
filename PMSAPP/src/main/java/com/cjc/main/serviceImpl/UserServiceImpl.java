@@ -1,5 +1,8 @@
 package com.cjc.main.serviceImpl;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +31,13 @@ public class UserServiceImpl implements UserServiceI {
 
 	@Override
 	public Iterable<User> displayAllData() {
-		
 		return ur.findAll();
 	}
+
+	
+
+
+	
 
 	
 

@@ -102,6 +102,7 @@
         footer a:hover {
             text-decoration: underline;
         }
+
         .no-products {
             color: #ff4d4d; 
             font-size: 1.5rem;
@@ -112,7 +113,6 @@
 </head>
 <body>
 
-    
     <div class="container text-center mt-3">
         <a href="${pageContext.request.contextPath}/dashboard" class="btn btn-warning">
             <i class="bi bi-house-door"></i> Home
@@ -121,42 +121,35 @@
 
     <div class="container product-container">
 
-       
         <div class="card-custom">
             <h2 class="form-title"><i class="bi bi-plus-circle"></i> Add Product</h2>
             <form action="${pageContext.request.contextPath}/addProduct" method="post">
                 
-               
                 <div class="mb-3">
                     <label for="productId" class="form-label">Product ID</label>
                     <input type="text" class="form-control" id="productId" name="id" placeholder="Enter Product ID" required>
                 </div>
                 
-               
                 <div class="mb-3">
                     <label for="productName" class="form-label">Product Name</label>
                     <input type="text" class="form-control" id="productName" name="name" placeholder="Enter Product Name" required>
                 </div>
-                
                 
                 <div class="mb-3">
                     <label for="productDescription" class="form-label">Description</label>
                     <input type="text" class="form-control" id="productDescription" name="description" placeholder="Enter Product Description" required>
                 </div>
                 
-               
                 <div class="mb-3">
                     <label for="productPrice" class="form-label">Price</label>
                     <input type="number" class="form-control" id="productPrice" name="price" placeholder="Enter Product Price" required>
                 </div>
                 
-               
                 <div class="mb-3">
                     <label for="productQuantity" class="form-label">Quantity</label>
                     <input type="number" class="form-control" id="productQuantity" name="quantity" placeholder="Enter Product Quantity" required>
                 </div>
 
-                
                 <div class="mb-3">
                     <label for="productCategories" class="form-label">Categories</label>
                     <select class="form-control" id="productCategories" name="categories" required>
@@ -180,7 +173,6 @@
                     </select>
                 </div>
 
-               
                 <div class="mb-3">
                     <label for="imageUrl" class="form-label">Product Image URL</label>
                     <input type="text" class="form-control" id="imageUrl" name="imageUrl" placeholder="Enter Image URL" required>
@@ -193,16 +185,14 @@
             </form>
         </div>
 
-        
         <div class="card-custom">
             <h2 class="form-title"><i class="bi bi-search"></i> Search Product</h2>
             <form action="${pageContext.request.contextPath}/searchProduct" method="get" class="search-box">
                 <div class="mb-3">
-                   
                     <label for="searchCategories" class="form-label">Select a Categories</label>
                     <select id="searchCategories" name="categories" class="form-control" required>
                         <option value="">--Select Categories--</option>
-                        <option value="All">All</option> 
+                        <option value="All">All</option>
                         <option value="Jeans">Jeans</option>
                         <option value="Tops">Tops</option>
                         <option value="Electronics">Electronics</option>
@@ -225,7 +215,6 @@
             </form>
         </div>
 
-       
         <div class="product-list">
             <h2 class="form-title"><i class="bi bi-list"></i> Product List</h2>
             <c:if test="${not empty products}">
@@ -251,23 +240,14 @@
                                 <td>${product.price}</td>
                                 <td>${product.quantity}</td>
                                 <td>${product.categories}</td>
-                                
-                               <td>
-   
-    <c:if test="${not empty product.imageUrl}">
-        
-        <img src="${pageContext.request.contextPath}/images/${product.imageUrl}" alt="Product Image" style="max-width: 100px; max-height: 100px;">
-    </c:if>
-
-    
-    <c:if test="${empty product.imageUrl}">
-        <img src="${pageContext.request.contextPath}/images/placeholder.png" alt="No Image Available" style="max-width: 100px; max-height: 100px;">
-    </c:if>
-</td>
-                               
-                                
-                       
-            
+                                <td>
+                                    <c:if test="${not empty product.imageUrl}">
+                                        <img src="${pageContext.request.contextPath}/images/${product.imageUrl}" alt="Product Image" style="max-width: 100px; max-height: 100px;">
+                                    </c:if>
+                                    <c:if test="${empty product.imageUrl}">
+                                        <img src="${pageContext.request.contextPath}/images/placeholder.png" alt="No Image Available" style="max-width: 100px; max-height: 100px;">
+                                    </c:if>
+                                </td>
                                 <td class="actions">
                                     <a href="${pageContext.request.contextPath}/deleteProduct?id=${product.id}" class="btn btn-danger">
                                         <i class="bi bi-trash"></i> Delete
@@ -291,6 +271,3 @@
 </body>
 
 </html>
-               
-   
-     

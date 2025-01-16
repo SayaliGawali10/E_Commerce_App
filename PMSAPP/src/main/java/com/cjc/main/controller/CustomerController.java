@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cjc.main.model.Customer;
-
+import com.cjc.main.model.Order;
 import com.cjc.main.serviceI.CustomerServiceI;
 
 @Controller
@@ -30,19 +30,17 @@ public class CustomerController {
 	
 	@RequestMapping("/SearchCustomer")
 	public String getCustomerDetails(@RequestParam int id, Model m) {
-		List<Customer> result=csi.searchCustomerById(id);
-		if(result.size()>0)
-		{
-			m.addAttribute("customers", result);
-			
-		}
-		else {
-		List<Customer> customers=csi.getAllCustomers();
-		m.addAttribute("customers", customers);
-		
+	    List<Customer> result = csi.searchCustomerById(id);
+	    if (result.size() > 0) {
+	        m.addAttribute("customers", result);
+	    } else {
+	        List<Customer> customers = csi.getAllCustomers();
+	        m.addAttribute("customers", customers);
+	        m.addAttribute("message", "Customer ID not found. Showing all customers.");
+	    }
+	    return "customers";
 	}
-		return "customers";
-}
+
     
 	@RequestMapping("/DeleteCustomer")
 	public String removeCustomers(@RequestParam ("id") int id, Model m) {
@@ -77,5 +75,11 @@ public class CustomerController {
 	}
 	
 	
+	@RequestMapping("/cancel")
+	public String customers( Model m) {
+		List<Customer> list = csi.getAllCustomers();
+		 m.addAttribute("customers", list);
+		return "customers";
+	}
 	
 }
